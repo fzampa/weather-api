@@ -7,7 +7,9 @@ The application uses Spring Boot as itś main framework.
 This is a REST application to manipulate sample weather data from sensors. <br>
 Regular endpoints are provided to insert, update, retrieve and delete weather samples and also special endpoints to 
 retrieve specific data as, for example, hottest or coldest day of the year. <br>
-Also, advanced queries are available to retrieve average metric data from sensors in a specific date or date range.  
+Also, advanced queries are available to retrieve average metric data from sensors in a specific date or date range.
+<br>
+The REST API is versioned and documented with Swagger
 
 The application has unit, integration, and contract tests. 
 
