@@ -1,11 +1,18 @@
 databaseChangeLog:
 - changeSet:
-    id: 1
+    id: "1"
     author: felipe
 - include:
     file: db/changelog/migrations/001.sql
 - changeSet:
-      id: 2
+      id: "2"
       author: felipe
 - include:
       file: db/changelog/migrations/002.sql
+- changeSet:
+      id: "3"
+      author: felipe
+- include:
+      file: db/changelog/migrations/003.sql
+
+      

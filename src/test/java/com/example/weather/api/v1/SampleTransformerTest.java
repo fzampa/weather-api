@@ -15,16 +15,16 @@ class SampleTransformerTest {
 	@Test
 	public void givenEntityIsFilledWhenTransformingShouldCreateTransfer() {
 		Sample entity = SampleEntityMother.complete();
-		assertEntity(entity);
+		SampleTransfer transfer = SampleTransformer.fromEntityToTransfer(entity);
+		assertEntityCorrectlyTransformedIntoTransfer(entity, transfer);
 	}
 
-	private static void assertEntity(Sample entity) {
-		SampleTransfer transfer = SampleTransformer.fromEntityToTransfer(entity);
-		assertThat(transfer).isNotNull();
-		assertThat(transfer.getId()).isEqualTo(entity.getId().toString());
-		assertThat(transfer.getTemperature()).isEqualTo(entity.getTemperature());
-		assertThat(transfer.getDateAndTime()).isEqualTo(entity.getDateAndTime());
-		assertThat(transfer.getSensorId()).isEqualTo(entity.getSensorId());
+	private void assertEntityCorrectlyTransformedIntoTransfer(Sample origin, SampleTransfer destination) {
+		assertThat(destination).isNotNull();
+		assertThat(destination.getId()).isEqualTo(origin.getId().toString());
+		assertThat(destination.getTemperature()).isEqualTo(origin.getTemperature());
+		assertThat(destination.getDateAndTime()).isEqualTo(origin.getDateAndTime());
+		assertThat(destination.getSensorId()).isEqualTo(origin.getSensorId());
 	}
 
 	@Test
@@ -41,7 +41,16 @@ class SampleTransformerTest {
 	@Test
 	public void givenEntityListWhenTransformingShouldCreateTransferList() {
 		List<Sample> entities = SampleEntityMother.list();
-		entities.forEach(SampleTransformerTest::assertEntity);
+		List<SampleTransfer> transfers = SampleTransformer.fromEntityListToTransferList(entities);
+
+		for (int i = 0; i < transfers.size(); i++) {
+			assertEntityCorrectlyTransformedIntoTransfer(entities.get(i), transfers.get(i));
+		}
+	}
+
+	@Test
+	public void givenNullListWhenTransformingShouldCreateEmptyTransferList() {
+		assertThat(SampleTransformer.fromEntityListToTransferList(null)).isEmpty();
 	}
 
 	@Test
