@@ -72,7 +72,7 @@ public class WeatherApi {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteSample(
 			@PathVariable(required = true) String id) {
 		boolean deleted = sampleService.delete(id);

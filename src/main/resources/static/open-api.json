@@ -97,36 +97,6 @@
 						}
 					}
 				}
-			},
-			"delete": {
-				"tags": [
-					"weather-api"
-				],
-				"summary": "Deletes a sample based on it's id",
-				"operationId": "deleteSample",
-				"parameters": [],
-				"responses": {
-					"204": {
-						"description": "Deleted",
-						"content": {
-							"*/*": {
-								"schema": {
-									"type": "object"
-								}
-							}
-						}
-					},
-					"404": {
-						"description": "Not found",
-						"content": {
-							"*/*": {
-								"schema": {
-									"type": "object"
-								}
-							}
-						}
-					}
-				}
 			}
 		},
 		"/api/v1/weather/{id}": {
@@ -161,6 +131,45 @@
 						"description": "Sample not found",
 						"content": {
 							"application/json": {}
+						}
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"weather-api"
+				],
+				"summary": "Deletes a sample based on it's id",
+				"operationId": "deleteSample",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Deleted",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "object"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not found",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "object"
+								}
+							}
 						}
 					}
 				}
