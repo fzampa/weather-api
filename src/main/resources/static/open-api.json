@@ -216,6 +216,55 @@
 				}
 			}
 		},
+		"/api/v1/weather/average/sensor/{sensorId}/from/{startDate}/to/{endDate}": {
+			"get": {
+				"tags": [
+					"weather-api"
+				],
+				"summary": "Return average temperature for given sensors given specific date range",
+				"operationId": "averageForSensor",
+				"parameters": [
+					{
+						"name": "sensorId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "startDate",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"format": "date-time"
+						}
+					},
+					{
+						"name": "endDate",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"format": "date-time"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Average temperature for given date range and sensor",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AverageResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
 		"/api/ping": {
 			"get": {
 				"tags": [

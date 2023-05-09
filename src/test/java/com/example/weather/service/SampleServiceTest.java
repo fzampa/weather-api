@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
@@ -26,10 +27,10 @@ import com.example.weather.repository.SampleRepository;
 
 @ExtendWith(MockitoExtension.class)
 class SampleServiceTest {
-	
+
 	@Mock
 	private SampleRepository repository = Mockito.mock(SampleRepository.class);
-	
+
 	@InjectMocks
 	private SampleService service;
 
@@ -39,14 +40,14 @@ class SampleServiceTest {
 		when(repository.findById(any())).thenReturn(empty);
 		assertFalse(service.delete(UUID.randomUUID().toString()));
 	}
-	
+
 	@Test
 	void givenIdExistWhenDeletingShouldReturnTrue() {
 		Optional<Sample> notEmpty = Optional.of(new Sample());
 		when(repository.findById(any())).thenReturn(notEmpty);
 		assertTrue(service.delete(UUID.randomUUID().toString()));
 	}
-	
+
 	@Test
 	void givenRepositoryHasTemperaturesWhenCalculatingAverageThenResultShouldBeAccurate() {
 		List<Sample> list = SampleEntityMother.list();
@@ -54,8 +55,15 @@ class SampleServiceTest {
 		list.get(1).setTemperature(BigDecimal.valueOf(25));
 		list.get(2).setTemperature(BigDecimal.valueOf(10));
 		when(repository.findByDateTimeGreaterThanAndDateTimeLessThan(any(), any())).thenReturn(list);
-		OptionalDouble average = service.averageBetween(LocalDateTime.now(), LocalDateTime.now());
+		OptionalDouble average = service.averageBetweenDates(LocalDateTime.now(), LocalDateTime.now());
 		assertTrue(average.isPresent());
 		assertThat(average.getAsDouble()).isEqualTo(20);
+	}
+
+	@Test
+	void givenRepositoryHasNoTemperatureWhenCalculatingAverageThenResultShouldBeEmpty() {
+		when(repository.findByDateTimeGreaterThanAndDateTimeLessThan(any(), any())).thenReturn(new ArrayList<>());
+		OptionalDouble average = service.averageBetweenDates(LocalDateTime.now(), LocalDateTime.now());
+		assertTrue(average.isEmpty());
 	}
 }

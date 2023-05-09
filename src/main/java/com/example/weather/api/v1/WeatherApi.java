@@ -92,8 +92,21 @@ public class WeatherApi {
 			@PathVariable(required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
 
 		AverageResponse response = new AverageResponse();
-		OptionalDouble average = sampleService.averageBetween(startDate,endDate);
+		OptionalDouble average = sampleService.averageBetweenDates(startDate,endDate);
 
+		response.setAverage(BigDecimal.valueOf(average.isPresent() ? average.getAsDouble() : 0));
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	@GetMapping("/average/sensor/{sensorId}/from/{startDate}/to/{endDate}")
+	public ResponseEntity<AverageResponse> averageForSensor(
+			@PathVariable(required = true) String sensorId,
+			@PathVariable(required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+			@PathVariable(required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+		
+		AverageResponse response = new AverageResponse();
+		OptionalDouble average = sampleService.averageBetweenDatesForSensor(startDate,endDate, sensorId);
+		
 		response.setAverage(BigDecimal.valueOf(average.isPresent() ? average.getAsDouble() : 0));
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}

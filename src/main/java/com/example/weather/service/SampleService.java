@@ -39,9 +39,14 @@ public class SampleService {
 		return true;
 	}
 
-	public OptionalDouble averageBetween(LocalDateTime startDate,
+	public OptionalDouble averageBetweenDates(LocalDateTime startDate,
 			LocalDateTime endDate) {
 		List<Sample> samples = sampleRepository.findByDateTimeGreaterThanAndDateTimeLessThan(startDate, endDate);
+		return samples.stream().mapToDouble(s -> s.getTemperature().doubleValue()).average();
+	}
+
+	public OptionalDouble averageBetweenDatesForSensor(LocalDateTime startDate, LocalDateTime endDate, String sensorId) {
+		List<Sample> samples = sampleRepository.findByDateTimeGreaterThanAndDateTimeLessThanAndSensorIdEquals(startDate, endDate, sensorId);
 		return samples.stream().mapToDouble(s -> s.getTemperature().doubleValue()).average();
 	}
 }

@@ -11,4 +11,7 @@ import com.example.weather.entity.Sample;
 public interface SampleRepository extends ListCrudRepository<Sample, UUID> {
 	
 	List<Sample> findByDateTimeGreaterThanAndDateTimeLessThan(LocalDateTime start, LocalDateTime end);
+
+	List<Sample> findByDateTimeGreaterThanAndDateTimeLessThanAndSensorIdEquals(
+			LocalDateTime startDate, LocalDateTime endDate, String sensorId);
 }
