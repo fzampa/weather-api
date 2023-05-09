@@ -35,7 +35,7 @@ public class WeatherApi {
     @GetMapping("/{id}")
     public SampleTransfer getSample(@PathVariable(required = true) String id) {
         Optional<Sample> byId = sampleRepository.findById(UUID.fromString(id));
-        return byId.isPresent() ? SampleTransformer.fromEntityToTransfer(byId.get()) : null; //imlement 404
+        return byId.isPresent() ? SampleTransformer.fromEntityToTransfer(byId.get()) : null; //implement 404
     }
 
     @Operation(summary = "Return all samples")

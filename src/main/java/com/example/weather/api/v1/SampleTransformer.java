@@ -1,12 +1,11 @@
 package com.example.weather.api.v1;
 
-import com.example.weather.entity.Sample;
-import com.example.weather.model.v1.SampleTransfer;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
+import com.example.weather.entity.Sample;
+import com.example.weather.model.v1.SampleTransfer;
 
 public class SampleTransformer {
     public static SampleTransfer fromEntityToTransfer(Sample entity) {
