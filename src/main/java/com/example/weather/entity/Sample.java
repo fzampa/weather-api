@@ -14,42 +14,42 @@ import jakarta.persistence.Table;
 @Entity(name = "sample")
 public class Sample {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-    private BigDecimal temperature;
-    private LocalDateTime dateAndTime;
-    private Integer sensorId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.UUID)
+	private UUID id;
+	private BigDecimal temperature;
+	private LocalDateTime dateAndTime;
+	private Integer sensorId;
 
-    public UUID getId() {
-        return id;
-    }
+	public UUID getId() {
+		return id;
+	}
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
+	public void setId(UUID id) {
+		this.id = id;
+	}
 
-    public BigDecimal getTemperature() {
-        return temperature;
-    }
+	public BigDecimal getTemperature() {
+		return temperature;
+	}
 
-    public void setTemperature(BigDecimal temperature) {
-        this.temperature = temperature;
-    }
+	public void setTemperature(BigDecimal temperature) {
+		this.temperature = temperature;
+	}
 
-    public LocalDateTime getDateAndTime() {
-        return dateAndTime;
-    }
+	public LocalDateTime getDateAndTime() {
+		return dateAndTime;
+	}
 
-    public void setDateAndTime(LocalDateTime dateAndTime) {
-        this.dateAndTime = dateAndTime;
-    }
+	public void setDateAndTime(LocalDateTime dateAndTime) {
+		this.dateAndTime = dateAndTime;
+	}
 
-    public Integer getSensorId() {
-        return sensorId;
-    }
+	public Integer getSensorId() {
+		return sensorId;
+	}
 
-    public void setSensorId(Integer sensorId) {
-        this.sensorId = sensorId;
-    }
+	public void setSensorId(Integer sensorId) {
+		this.sensorId = sensorId;
+	}
 }

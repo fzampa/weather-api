@@ -8,20 +8,20 @@ import com.example.weather.model.v1.SampleTransfer;
 
 public class SampleTransferMother {
 
-    static SampleTransfer complete(){
-        SampleTransfer sample = new SampleTransfer();
-        sample.setId(UUID.randomUUID().toString());
-        sample.setTemperature(BigDecimal.valueOf(22.8));
-        sample.setDateAndTime(LocalDateTime.now());
-        sample.setSensorId(4);
+	static SampleTransfer complete() {
+		SampleTransfer sample = new SampleTransfer();
+		sample.setId(UUID.randomUUID().toString());
+		sample.setTemperature(BigDecimal.valueOf(22.8));
+		sample.setDateAndTime(LocalDateTime.now());
+		sample.setSensorId(4);
 
-        return sample;
-    }
+		return sample;
+	}
 
-    public static SampleTransfer noId() {
-        SampleTransfer sample = complete();
-        sample.setId(null);
+	public static SampleTransfer noId() {
+		SampleTransfer sample = complete();
+		sample.setId(null);
 
-        return sample;
-    }
+		return sample;
+	}
 }

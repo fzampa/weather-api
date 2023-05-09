@@ -11,15 +11,14 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
-
 @RestController
 @RequestMapping("/api")
 public class MainController {
 
-    @GetMapping(value = {"/ping/{message}", "/ping"})
-    @Operation(summary = "Ping. Returns pong.")
-    @ApiResponse(responseCode = "200", description = "Expected pong response", content = @Content)
-    public String ping(@PathVariable(required = false) String message) {
-        return "pong " + Optional.ofNullable(message).orElse("");
-    }
+	@GetMapping(value = { "/ping/{message}", "/ping" })
+	@Operation(summary = "Ping. Returns pong.")
+	@ApiResponse(responseCode = "200", description = "Expected pong response", content = @Content)
+	public String ping(@PathVariable(required = false) String message) {
+		return "pong " + Optional.ofNullable(message).orElse("");
+	}
 }
