@@ -9,8 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
+import com.example.weather.BaseSpringBootTestWithContainers;
+
+
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-class MainControllerRequestsTest {
+class MainControllerRequestsTest extends BaseSpringBootTestWithContainers {
 
 	@LocalServerPort
 	private int port;

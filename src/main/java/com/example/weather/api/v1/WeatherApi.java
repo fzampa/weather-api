@@ -33,7 +33,9 @@ public class WeatherApi {
 			@PathVariable(required = true) String id) {
 		Optional<Sample> byId = sampleService.find(id);
 		return byId.isPresent()
-				? new ResponseEntity<>(SampleTransformer.fromEntityToTransfer(byId.get()),HttpStatus.OK)
+				? new ResponseEntity<>(
+						SampleTransformer.fromEntityToTransfer(byId.get()),
+						HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
