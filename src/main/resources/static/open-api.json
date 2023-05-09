@@ -264,45 +264,6 @@
 					}
 				}
 			}
-		},
-		"/api/ping": {
-			"get": {
-				"tags": [
-					"main-controller"
-				],
-				"summary": "Ping. Returns pong.",
-				"operationId": "ping",
-				"parameters": [],
-				"responses": {
-					"200": {
-						"description": "Expected pong response"
-					}
-				}
-			}
-		},
-		"/api/ping/{message}": {
-			"get": {
-				"tags": [
-					"main-controller"
-				],
-				"summary": "Ping. Returns pong.",
-				"operationId": "ping_1",
-				"parameters": [
-					{
-						"name": "message",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Expected pong response"
-					}
-				}
-			}
 		}
 	},
 	"components": {
