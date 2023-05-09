@@ -1,11 +1,11 @@
 package com.example.weather.api.v1;
 
-import com.example.weather.entity.Sample;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+
+import com.example.weather.entity.Sample;
 
 public class SampleEntityMother {
 

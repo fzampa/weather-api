@@ -1,13 +1,14 @@
 package com.example.weather.api.v1;
 
-import com.example.weather.entity.Sample;
-import com.example.weather.model.v1.SampleTransfer;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
+
+import com.example.weather.entity.Sample;
+import com.example.weather.model.v1.SampleTransfer;
 
 class SampleTransformerTest {
 

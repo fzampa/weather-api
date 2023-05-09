@@ -1,9 +1,10 @@
 package com.example.weather.repository;
 
-import com.example.weather.entity.Sample;
+import java.util.UUID;
+
 import org.springframework.data.repository.ListCrudRepository;
 
-import java.util.UUID;
+import com.example.weather.entity.Sample;
 
 public interface SampleRepository extends ListCrudRepository<Sample, UUID> {
 }
