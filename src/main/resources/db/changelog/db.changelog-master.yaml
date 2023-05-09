@@ -14,5 +14,10 @@ databaseChangeLog:
       author: felipe
 - include:
       file: db/changelog/migrations/003.sql
+- changeSet:
+      id: "4"
+      author: felipe
+- include:
+      file: db/changelog/migrations/004.sql
 
       

@@ -23,7 +23,7 @@ class SampleTransformerTest {
 		assertThat(destination).isNotNull();
 		assertThat(destination.getId()).isEqualTo(origin.getId().toString());
 		assertThat(destination.getTemperature()).isEqualTo(origin.getTemperature());
-		assertThat(destination.getDateAndTime()).isEqualTo(origin.getDateAndTime());
+		assertThat(destination.getDateAndTime()).isEqualTo(origin.getDateTime());
 		assertThat(destination.getSensorId()).isEqualTo(origin.getSensorId());
 	}
 
@@ -34,7 +34,7 @@ class SampleTransformerTest {
 		assertThat(transfer).isNotNull();
 		assertThat(transfer.getId()).isNull();
 		assertThat(transfer.getTemperature()).isEqualTo(entity.getTemperature());
-		assertThat(transfer.getDateAndTime()).isEqualTo(entity.getDateAndTime());
+		assertThat(transfer.getDateAndTime()).isEqualTo(entity.getDateTime());
 		assertThat(transfer.getSensorId()).isEqualTo(entity.getSensorId());
 	}
 
@@ -60,7 +60,7 @@ class SampleTransformerTest {
 		assertThat(entity).isNotNull();
 		assertThat(entity.getId()).isEqualTo(UUID.fromString(transfer.getId()));
 		assertThat(entity.getTemperature()).isEqualTo(transfer.getTemperature());
-		assertThat(entity.getDateAndTime()).isEqualTo(transfer.getDateAndTime());
+		assertThat(entity.getDateTime()).isEqualTo(transfer.getDateAndTime());
 		assertThat(entity.getSensorId()).isEqualTo(transfer.getSensorId());
 	}
 
@@ -71,7 +71,7 @@ class SampleTransformerTest {
 		assertThat(entity).isNotNull();
 		assertThat(entity.getId()).isNull();
 		assertThat(entity.getTemperature()).isEqualTo(transfer.getTemperature());
-		assertThat(entity.getDateAndTime()).isEqualTo(transfer.getDateAndTime());
+		assertThat(entity.getDateTime()).isEqualTo(transfer.getDateAndTime());
 		assertThat(entity.getSensorId()).isEqualTo(transfer.getSensorId());
 	}
 }

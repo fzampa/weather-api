@@ -13,7 +13,7 @@ public class SampleEntityMother {
 		Sample sample = new Sample();
 		sample.setId(UUID.randomUUID());
 		sample.setTemperature(BigDecimal.valueOf(22.8));
-		sample.setDateAndTime(LocalDateTime.now());
+		sample.setDateTime(LocalDateTime.now());
 		sample.setSensorId(3);
 
 		return sample;

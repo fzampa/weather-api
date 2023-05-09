@@ -1,7 +1,9 @@
 package com.example.weather.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +37,11 @@ public class SampleService {
 
 		sampleRepository.deleteById(UUID.fromString(id));
 		return true;
+	}
+
+	public OptionalDouble averageBetween(LocalDateTime startDate,
+			LocalDateTime endDate) {
+		List<Sample> samples = sampleRepository.findByDateTimeGreaterThanAndDateTimeLessThan(startDate, endDate);
+		return samples.stream().mapToDouble(s -> s.getTemperature().doubleValue()).average();
 	}
 }

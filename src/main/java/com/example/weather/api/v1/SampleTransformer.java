@@ -16,7 +16,7 @@ public class SampleTransformer {
 			transfer.setId(entity.getId().toString());
 		}
 		transfer.setTemperature(entity.getTemperature());
-		transfer.setDateAndTime(entity.getDateAndTime());
+		transfer.setDateAndTime(entity.getDateTime());
 		transfer.setSensorId(entity.getSensorId());
 
 		return transfer;
@@ -33,7 +33,7 @@ public class SampleTransformer {
 		Sample entity = new Sample();
 		entity.setId(transfer.getId() == null ? null : UUID.fromString(transfer.getId()));
 		entity.setTemperature(transfer.getTemperature());
-		entity.setDateAndTime(transfer.getDateAndTime());
+		entity.setDateTime(transfer.getDateAndTime());
 		entity.setSensorId(transfer.getSensorId());
 
 		return entity;
@@ -44,7 +44,7 @@ public class SampleTransformer {
 
 		entity.setId(null);
 		entity.setTemperature(transfer.getTemperature());
-		entity.setDateAndTime(transfer.getDateAndTime());
+		entity.setDateTime(transfer.getDateAndTime());
 		entity.setSensorId(transfer.getSensorId());
 
 		return entity;

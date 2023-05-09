@@ -1,10 +1,14 @@
 package com.example.weather.api.v1;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.OptionalDouble;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.weather.entity.Sample;
+import com.example.weather.model.v1.AverageResponse;
 import com.example.weather.model.v1.SampleSaveTransfer;
 import com.example.weather.model.v1.SampleTransfer;
 import com.example.weather.service.SampleService;
@@ -80,4 +85,17 @@ public class WeatherApi {
 				? new ResponseEntity<>(HttpStatus.NO_CONTENT)
 				: new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+
+	@GetMapping("/average/from/{startDate}/to/{endDate}")
+	public ResponseEntity<AverageResponse> average(
+			@PathVariable(required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+			@PathVariable(required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+
+		AverageResponse response = new AverageResponse();
+		OptionalDouble average = sampleService.averageBetween(startDate,endDate);
+
+		response.setAverage(BigDecimal.valueOf(average.isPresent() ? average.getAsDouble() : 0));
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
 }

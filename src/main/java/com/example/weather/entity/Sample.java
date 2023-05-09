@@ -18,7 +18,7 @@ public class Sample {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
 	private BigDecimal temperature;
-	private LocalDateTime dateAndTime;
+	private LocalDateTime dateTime;
 	private Integer sensorId;
 
 	public UUID getId() {
@@ -37,12 +37,12 @@ public class Sample {
 		this.temperature = temperature;
 	}
 
-	public LocalDateTime getDateAndTime() {
-		return dateAndTime;
+	public LocalDateTime getDateTime() {
+		return dateTime;
 	}
 
-	public void setDateAndTime(LocalDateTime dateAndTime) {
-		this.dateAndTime = dateAndTime;
+	public void setDateTime(LocalDateTime dateTime) {
+		this.dateTime = dateTime;
 	}
 
 	public Integer getSensorId() {
