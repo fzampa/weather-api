@@ -26,7 +26,7 @@ developer is able to understand the API and iterate over it.
 
 The application is divided into layers and, with that, different packages and classes are available:
 
-* `api.v1` package contains the classes for the API (controllers) and request objects
+* `api.v1` package contains the classes for the API manipulation.
 * `model.v1` is the set of Transfer Objects used by the controllers to request and respond data. 
 Here the api is versioned and separated from the entity layer to enable future versioning and improvements on the 
 communication or database layers.
