@@ -11,7 +11,9 @@ import java.util.stream.Collectors;
 public class SampleTransformer {
     public static SampleTransfer fromEntityToTransfer(Sample entity) {
         SampleTransfer transfer = new SampleTransfer();
-        transfer.setId(entity.getId().toString());
+        if (entity.getId() != null) {
+            transfer.setId(entity.getId().toString());
+        }
         transfer.setTemperature(entity.getTemperature());
         transfer.setDateAndTime(entity.getDateAndTime());
 
