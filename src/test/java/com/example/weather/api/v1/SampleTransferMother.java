@@ -14,6 +14,7 @@ public class SampleTransferMother {
         sample.setId(UUID.randomUUID().toString());
         sample.setTemperature(BigDecimal.valueOf(22.8));
         sample.setDateAndTime(LocalDateTime.now());
+        sample.setSensorId(4);
 
         return sample;
     }

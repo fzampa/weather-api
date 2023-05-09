@@ -8,6 +8,7 @@ public class SampleTransfer {
     private String id;
     private BigDecimal temperature;
     private LocalDateTime dateAndTime;
+    private Integer sensorId;
 
     public String getId() {
         return id;
@@ -32,4 +33,13 @@ public class SampleTransfer {
     public void setDateAndTime(LocalDateTime dateAndTime) {
         this.dateAndTime = dateAndTime;
     }
+
+    public Integer getSensorId() {
+        return sensorId;
+    }
+
+    public void setSensorId(Integer sensorId) {
+        this.sensorId = sensorId;
+    }
+
 }
