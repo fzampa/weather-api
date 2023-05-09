@@ -1,0 +1,248 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "OpenAPI definition",
+		"version": "v0"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:8080",
+			"description": "Generated server url"
+		}
+	],
+	"paths": {
+		"/api/v1/weather": {
+			"get": {
+				"tags": [
+					"weather-api"
+				],
+				"summary": "Return all samples",
+				"operationId": "getAllSamples",
+				"responses": {
+					"200": {
+						"description": "List of samples",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/SampleTransfer"
+									}
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Sample not found",
+						"content": {
+							"application/json": {}
+						}
+					}
+				}
+			},
+			"put": {
+				"tags": [
+					"weather-api"
+				],
+				"summary": "Updates a sample",
+				"operationId": "updateSample",
+				"requestBody": {
+					"description": "Sample to be updated, with ID",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SampleTransfer"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "Sample update",
+						"content": {
+							"application/json": {}
+						}
+					},
+					"404": {
+						"description": "Sample not found",
+						"content": {
+							"application/json": {}
+						}
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"weather-api"
+				],
+				"summary": "Creates a sample",
+				"operationId": "createSample",
+				"requestBody": {
+					"description": "Sample to be created",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SampleSaveTransfer"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {}
+						}
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"weather-api"
+				],
+				"summary": "Deletes a sample based on it's id",
+				"operationId": "deleteSample",
+				"parameters": [],
+				"responses": {
+					"204": {
+						"description": "Deleted",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "object"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not found",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "object"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/weather/{id}": {
+			"get": {
+				"tags": [
+					"weather-api"
+				],
+				"summary": "Return specific sample based on it's id",
+				"operationId": "getSample",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Sample with given ID",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SampleTransfer"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Sample not found",
+						"content": {
+							"application/json": {}
+						}
+					}
+				}
+			}
+		},
+		"/api/ping": {
+			"get": {
+				"tags": [
+					"main-controller"
+				],
+				"summary": "Ping. Returns pong.",
+				"operationId": "ping",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "Expected pong response"
+					}
+				}
+			}
+		},
+		"/api/ping/{message}": {
+			"get": {
+				"tags": [
+					"main-controller"
+				],
+				"summary": "Ping. Returns pong.",
+				"operationId": "ping_1",
+				"parameters": [
+					{
+						"name": "message",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Expected pong response"
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"SampleTransfer": {
+				"type": "object",
+				"properties": {
+					"temperature": {
+						"type": "number"
+					},
+					"dateAndTime": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"sensorId": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"id": {
+						"type": "string"
+					}
+				}
+			},
+			"SampleSaveTransfer": {
+				"type": "object",
+				"properties": {
+					"temperature": {
+						"type": "number"
+					},
+					"dateAndTime": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"sensorId": {
+						"type": "integer",
+						"format": "int32"
+					}
+				}
+			}
+		}
+	}
+}
