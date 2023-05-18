@@ -1,6 +1,7 @@
 package com.example.weather.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.example.weather.BaseSpringBootTestWithContainers;
 
@@ -24,11 +27,15 @@ class MainControllerRequestsTest extends BaseSpringBootTestWithContainers {
 
 	@Test
 	void mainPingShouldReturnPong() {
-		assertThat(this.restTemplate.getForObject(host + ":" + port + "/", String.class).equals("pong"));
+		ResponseEntity<String> response = this.restTemplate.getForEntity(host + ":" + port + "/", String.class);
+		assertEquals(response.getStatusCode(), HttpStatus.OK);
+		assertThat(response.getBody().equals("pong"));
 	}
 
 	@Test
 	void mainPingShouldReturnPongPlusParameter() {
-		assertThat(this.restTemplate.getForObject(host + ":" + port + "/message", String.class).equals("pong message"));
+		ResponseEntity<String> response = this.restTemplate.getForEntity(host + ":" + port + "/message", String.class);
+		assertEquals(response.getStatusCode(), HttpStatus.OK);
+		assertEquals(response.getBody(), "pong message");
 	}
 }
